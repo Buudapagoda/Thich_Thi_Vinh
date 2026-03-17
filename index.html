@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chùa Bửu Đà - Bio Profile - Thích Thị Vinh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold-main: #EFC23F; /* Vàng chủ đạo */
+            --gold-alt: #DDAF38; /* Vàng đậm cho nút hành động */
+            --light-bg: #F5F5F5;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --icon-grey: #808080;
+            
+            --facebook-blue: #3b5998;
+            --tiktok-black: #000000;
+            --youtube-red: #FF0000;
+            --flickr-magenta: #FF1493; /* Màu cho Thư Viện Ảnh */
+            
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --cover-height: 250px;
+            --profile-size: 110px; /* Kích thước logo */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding-bottom: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px; /* Định dạng kiểu app di động */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Tạo bóng cho container */
+            background-color: var(--card-bg);
+            position: relative;
+        }
+
+        /* 1. Phần Ảnh Bìa (Cover Photo) */
+        .cover-container {
+            width: 100%;
+            height: var(--cover-height);
+            position: relative;
+            overflow: hidden; /* Cần để che bớt ảnh đại diện bị logo lồng */
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* 2. Phần Header Vàng bắt đầu ngay lập tức bên dưới ảnh bìa */
+        .golden-section {
+            background-color: var(--gold-main);
+            padding: calc(var(--profile-size) / 2 + 10px) 15px 20px; /* Chừa chỗ cho logo ở trên, 110/2 + 10 = 65px */
+            text-align: center;
+            position: relative; /* Quan trọng cho logo position absolute */
+            margin-top: 0; /* Đảm bảo khít sát ảnh bìa */
+        }
+
+        /* Ảnh Đại Diện (Logo) lồng vào - Sử dụng Position Absolute */
+        .profile-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Kéo lên 50% chiều cao lồng vào ảnh bìa, căn giữa ngang */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10; /* Đảm bảo logo ở trên ảnh bìa */
+        }
+
+        .logo-circle {
+            width: var(--profile-size);
+            height: var(--profile-size);
+            background-color: white;
+            border: 4px solid white; /* Viền trắng */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .logo-circle img {
+            width: 80%; /* Giữ logo gọn trong vòng tròn */
+            height: 80%;
+            object-fit: contain;
+        }
+
+        .temple-name {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #4B4B4B;
+        }
+
+        .abbot-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #7A7A7A;
+            margin-bottom: 20px; /* Giảm lề dưới */
+        }
+
+        /* Các nút GỌI, E-MAIL, HƯỚNG DẪN - Sửa lại để nằm gọn trong khối vàng */
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background-color: var(--gold-alt);
+            width: 100%;
+            border-radius: 10px; /* Thêm bo góc cho các nút nằm trong phần vàng */
+        }
+
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .action-button i {
+            font-size: 20px;
+        }
+
+        /* 3. Phần Nội Dung Liên Hệ Màu Sáng bắt đầu ngay lập tức */
+        .contact-section {
+            padding: 20px 15px; /* Giảm padding trên vì không cần chừa chỗ cho action-buttons nữa */
+            background-color: var(--light-bg);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Chi tiết ngân hàng */
+        .bank-details {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .bank-directive {
+            margin-top: 8px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Từng dòng liên hệ */
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .contact-row:hover {
+            transform: translateX(3px);
+            background-color: #f9f9f9;
+        }
+
+        .contact-icon-container {
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            margin-top: 3px;
+        }
+
+        .contact-icon-container i {
+            font-size: 18px;
+            color: var(--gold-main);
+        }
+
+        .contact-text-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Hiển thị trên bản đồ link */
+        .map-button {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold-alt);
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        /* Mạng xã hội */
+        .social-media-container {
+            margin-top: 20px;
+        }
+
+        .social-media-label {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .social-icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: var(--shadow);
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Màu icon mạng xã hội */
+        .world-icon { border: 2px solid var(--icon-grey); color: var(--icon-grey); background-color: white; }
+        .facebook-icon { background-color: var(--facebook-blue); color: white; }
+        .tiktok-icon { background-color: var(--tiktok-black); color: white; }
+        .flickr-icon { background-color: var(--flickr-magenta); color: white; }
+        .youtube-icon { background-color: var(--youtube-red); color: white; }
+        
+        /* Tối ưu màn hình cực nhỏ */
+        @media (max-width: 350px) {
+            .container { max-width: 100%; }
+            --cover-height: 200px;
+            --profile-size: 90px;
+            .temple-name { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="cover-container">
+            <img src="cover.jpg" alt="Chánh điện Chùa Bửu Đà" class="cover-photo">
+        </div>
+
+        <section class="golden-section">
+            <div class="profile-container">
+                <div class="logo-circle">
+                    <img src="logo.jpg" alt="Logo Chùa Bửu Đà">
+                </div>
+            </div>
+
+            <h1 class="temple-name">Chùa Bửu Đà</h1>
+            <p class="abbot-name">Trụ trì: ĐĐ. Thích Thị Vinh</p>
+
+            <div class="action-buttons">
+                <a href="tel:0918205182" class="action-button">
+                    <i class="fa-solid fa-phone"></i>
+                    GỌI
+                </a>
+                <a href="mailto:buudapagoda@gmail.com" class="action-button">
+                    <i class="fa-solid fa-envelope"></i>
+                    E-MAIL
+                </a>
+                <a href="https://maps.app.goo.gl/YourMapIDHere" target="_blank" class="action-button">
+                    <i class="fa-solid fa-location-dot"></i>
+                    HƯỚNG DẪN
+                </a>
+            </div>
+        </section>
+
+        <main class="contact-section">
+            <div class="bank-details">
+                <strong>Thông tin cúng dường Tam bảo/Từ thiện:</strong><br>
+                Số Tài khoản: 0421000475485<br>
+                Ngân hàng: HSBC<br>
+                Chủ tài khoản: Nguyễn Hồng Quang (Thích Thị Vinh)<br>
+                <div class="bank-directive">Xin xác định nội dung khi ck: "Tam bảo" hay "Từ thiện"</div>
+            </div>
+
+            <a href="tel:0918205182" class="contact-row">
+                <div class="contact-icon-container"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div class="contact-text-block">
+                    <span class="contact-value">0918205182</span>
+                    <span class="contact-label">Di động</span>
+                </div>
+            </a>
+
+            <a href="mailto:buudapagoda@gmail.com" class="contact-row">
+                <div class="contact-icon-container"><i class="fa-solid fa-envelope"></i></div>
+                <div class="contact-text-block">
+                    <span class="contact-value">buudapagoda@gmail.com</span>
+                    <span class="contact-label">E-mail</span>
+                </div>
+            </a>
+
+            <div class="contact-row">
+                <div class="contact-icon-container"><i class="fa-solid fa-id-badge"></i></div>
+                <div class="contact-text-block">
+                    <span class="contact-value">Tổ chức Tôn Giáo</span>
+                    <span class="contact-label">Trụ trì: ĐĐ. Thích Thị Vinh</span>
+                </div>
+            </div>
+
+            <div class="contact-row">
+                <div class="contact-icon-container"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="contact-text-block">
+                    <span class="contact-value">Cách Mạng Tháng 8 419/11</span>
+                    <span class="contact-value">Phường Hoà Hưng, Quận 10, TP.HCM</span>
+                    <span class="contact-value">70000 Việt Nam</span>
+                    <a href="https://maps.app.goo.gl/YourMapIDHere" target="_blank" class="map-button">HIỂN THỊ TRÊN BẢN ĐỒ</a>
+                </div>
+            </div>
+
+            <a href="http://chuabuuda.org" target="_blank" class="contact-row">
+                <div class="contact-icon-container"><i class="fa-solid fa-globe"></i></div>
+                <div class="contact-text-block">
+                    <span class="contact-value">http://chuabuuda.org</span>
+                    <span class="contact-label">Trang web</span>
+                </div>
+            </a>
+
+            <aside class="social-media-container">
+                <p class="social-media-label">Mạng xã hội và Thư viện ảnh</p>
+                <div class="social-icons-row">
+                    <a href="http://chuabuuda.org" target="_blank" class="social-icon world-icon" title="Trang web">
+                        <i class="fa-solid fa-globe"></i>
+                    </a>
+                    <a href="https://www.facebook.com/nguyen.quang.313" target="_blank" class="social-icon facebook-icon" title="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@chuabuudaquan10?_t=ZS-8t1RLLbIxwm&_r=1" target="_blank" class="social-icon tiktok-icon" title="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.flickr.com/photos/184984241@N04/albums/" target="_blank" class="social-icon flickr-icon" title="Thư viện ảnh Flickr">
+                        <i class="fa-brands fa-flickr"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@buudapagoda" target="_blank" class="social-icon youtube-icon" title="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+</body>
+</html>
